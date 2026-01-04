@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chenji CashFlow Game Pro</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="firebaseConfig.js"></script>
+</head>
+<body>
+
+<!-- GUIDE OVERLAY -->
+<div id="guide-overlay">
+  <h1>Welcome to Chenji CashFlow!</h1>
+  <p>Manage your money wisely over 30 days.<br>Earn badges, grow your balance, survive!</p>
+  <button id="start-btn" class="btn next-btn">Start Playing</button>
+</div>
+
+<main class="app">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="logo">
+      <i class="fa-solid fa-coins"></i>
+      <span>Chenji CashFlow Game Pro</span>
+    </div>
+    <div class="offline-status">
+      <i class="fa-solid fa-wifi"></i>
+      <span>Offline Ready</span>
+    </div>
+  </header>
+
+  <!-- BALANCE CARD -->
+  <section class="balance-card">
+    <p class="label">Balance</p>
+    <h1 class="balance-amount">
+      Tsh <span id="balance">10000</span>
+    </h1>
+    <p class="sub-text">Smart money moves 💡</p>
+  </section>
+
+  <!-- STATS ROW -->
+  <section class="stats-row">
+    <div class="stat-card">
+      <p>Points</p>
+      <h3><span id="points">0</span> ⭐</h3>
+    </div>
+    <div class="stat-card">
+      <p>Day</p>
+      <h3><span id="day">1 / 30</span> 📅</h3>
+    </div>
+  </section>
+
+  <!-- SCENARIO -->
+  <section class="scenario-card">
+    <p id="scenario-text"></p>
+    <div id="choices" class="choices"></div>
+  </section>
+
+  <!-- MINI BUSINESS -->
+  <section class="business-card">
+    <h2>🏪 Mini-Business</h2>
+    <div class="business-stats" id="business-stats"></div>
+    <div class="action-buttons" id="stock-buttons"></div>
+  </section>
+
+  <!-- BADGES -->
+  <section class="badges-card">
+    <h2>🏅 Badges Earned</h2>
+    <div id="badges" class="badges">None</div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section class="leaderboard-card">
+    <h2>🏆 Leaderboard</h2>
+    <ol id="leaderboard"></ol>
+    <button id="share-btn" class="btn share-btn">
+      <i class="fa-brands fa-whatsapp"></i>
+      Share Your Score
+    </button>
+  </section>
+
+  <!-- NEXT DAY -->
+  <section class="next-day">
+    <button id="next-btn" class="btn next-btn" onclick="nextDay()">▶ Next Day</button>
+  </section>
+
+</main>
+
+<!-- POPUPS -->
+<div id="buy-popup" class="popup hidden">
+  <h3>Buy Stocks</h3>
+  <div id="buy-options"></div>
+  <button class="btn next-btn" onclick="confirmBuy()">Confirm Buy</button>
+  <button class="btn" onclick="closeBuyPopup()">Cancel</button>
+</div>
+
+<div id="sell-popup" class="popup hidden">
+  <h3>Sell Stocks</h3>
+  <div id="sell-options"></div>
+  <button class="btn next-btn" onclick="confirmSell()">Confirm Sell</button>
+  <button class="btn" onclick="closeSellPopup()">Cancel</button>
+</div>
+
+<!-- Sounds -->
+<audio id="coin-sound" src="assets/coin.mp3"></audio>
+<audio id="badge-sound" src="assets/badge.mp3"></audio>
+
+<!-- App Logic -->
+<script src="app.js"></script>
+</body>
+</html>
